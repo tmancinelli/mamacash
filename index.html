@@ -1,5 +1,10 @@
 <html>
-  <head>
-    <meta http-equiv="refresh" content="time; URL=http://mamacash.org" />
-  </head>
+
+  <?php
+  header("Location: http://mamacash.org/"); /* Redirect browser */
+
+  /* Make sure that code below does not get executed when we redirect. */
+  exit;
+  ?>
 </html>
+
