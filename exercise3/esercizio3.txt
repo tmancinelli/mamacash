@@ -1,0 +1,24 @@
+Q: List total amount of donations for non-active (disabled) users in 2020
+A: I use a boolean for the userstatus. 0 means disabled, 1 means enabled.
+Query: SELECT SUM(donations.singledonation) FROM donations INNER JOIN userstatus ON donations.userid=userstatus.userid WHERE donations.year=2020 and userstatus.status=0;
+Results: 130
+
+Q: List total amount of donations for active (enabled) users in 2020
+
+SELECT SUM(donations.singledonation) FROM donations INNER JOIN userstatus ON donations.userid=userstatus.userid WHERE donations.year=2020 and userstatus.status=1;
+20
+
+Q: List total amount of donations for non-active (disabled) users in 2021
+SELECT SUM(donations.singledonation) FROM donations INNER JOIN userstatus ON donations.userid=userstatus.userid WHERE donations.year=2021 and userstatus.status=0;
+60
+
+Q: Total amount for all users with status enabled and disabled users ever separate and total.
+A: I am not sure I have understood the question. My interpretation is to extract the user name, the status, and the total amount of donations.
+
+SELECT userids.user_login_name, userstatus.status, SUM(donations.singledonation) FROM userids LEFT JOIN donations ON donations.userid=userids.id LEFT JOIN userstatus ON userstatus.userid=userids.id GROUP BY userids.id;
+a.tomic|1|42
+b.ligthart|0|0
+b.lotti|0|135
+b.degraaff|0|140
+a.gigler|0|0
+a.briggs|1|85
